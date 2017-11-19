@@ -1,5 +1,5 @@
-;; #################  My Emacs File ###################
-;; ### init.el with some configurations/preferences ###
+;; #################  My EmacsC File ###################
+;; ### init.el with some confiCgurations/preferences ###
 ;; ###          @author: Clederson Cruz             ###
 ;; ###                   2017                       ###
 ;; ####################################################
@@ -15,6 +15,12 @@
 
 ;; Theme
 (load-theme 'misterioso)
+
+;; Window
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;; It hides the menu-bar
 (tool-bar-mode -1)
