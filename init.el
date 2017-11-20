@@ -1,5 +1,5 @@
-;; #################  My EmacsC File ###################
-;; ### init.el with some confiCgurations/preferences ###
+;; #################  My Emacs File ###################
+;; ### init.el with some configurations/preferences ###
 ;; ###          @author: Clederson Cruz             ###
 ;; ###                   2017                       ###
 ;; ####################################################
@@ -26,6 +26,10 @@
 (tool-bar-mode -1)
 ;; It shows the line number on Emacs
 (global-linum-mode t)
+;; Auto-complete
+(global-auto-complete-mode t)
+;; Auto-pair
+(autopair-global-mode)
 
 ;; setup sr-speed-bar
 (require 'sr-speedbar)
@@ -45,10 +49,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (sr-speedbar))))
+ '(package-selected-packages (quote (autopair auto-complete sr-speedbar))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
