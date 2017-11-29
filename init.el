@@ -30,7 +30,10 @@
 (global-auto-complete-mode t)
 ;; Auto-pair
 (autopair-global-mode)
-
+;; Tabs
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
+(defvaralias 'c-basic-offset 'tab-width)
 ;; setup sr-speed-bar
 (require 'sr-speedbar)
 (global-set-key (kbd "C-c b") 'sr-speedbar-toggle)
