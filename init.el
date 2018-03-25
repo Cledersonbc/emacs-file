@@ -19,11 +19,15 @@
 ;; Window
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key (kbd "S-C-<up>") 'shrink-window)
+(global-set-key (kbd "S-C-<down>") 'enlarge-window)
 
-;; It hides the menu-bar
+;; It hides the menu-bar, scrollbar and tool-bar
 (tool-bar-mode -1)
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+;; It hides Emacs Welcome
+(setq inhibit-startup-screen t)
 ;; It shows the line number on Emacs
 (global-linum-mode t)
 ;; Auto-complete
@@ -42,7 +46,6 @@
  speedbar-show-unknown-files t
  speedbar-use-images nil
  speedbar-vc-do-check nil
- sr-speedbar-auto-refresh nil
  sr-speedbar-max-width 72
  sr-speedbar-width-x 48
 )
