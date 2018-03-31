@@ -13,8 +13,13 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
-;; Theme
-(load-theme 'misterioso)
+;; Themes
+(require 'doom-themes)
+(load-theme 'doom-one t)
+;; (load-theme 'misterioso)
+
+;; Icons
+(require 'all-the-icons)
 
 ;; Window
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -38,24 +43,20 @@
 (setq-default indent-tabs-mode t)
 (setq-default tab-width 4)
 (defvaralias 'c-basic-offset 'tab-width)
-;; setup sr-speed-bar
-(require 'sr-speedbar)
-(global-set-key (kbd "C-c b") 'sr-speedbar-toggle)
-(setq
- sr-speedbar-right-side nil
- speedbar-show-unknown-files t
- speedbar-use-images nil
- speedbar-vc-do-check nil
- sr-speedbar-max-width 72
- sr-speedbar-width-x 48
-)
+;; setup Neotree
+(require 'neotree)
+(global-set-key (kbd "C-c C-d") 'neotree-toggle)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(setq neo-window-fixed-size nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (autopair auto-complete sr-speedbar))))
+ '(package-selected-packages
+   (quote
+	(neotree doom-themes autopair auto-complete sr-speedbar))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
