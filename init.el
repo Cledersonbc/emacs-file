@@ -13,6 +13,15 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
+;; Shell
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
+;; Fly-check with Python
+(defun flycheck-python-setup ()
+    (flycheck-mode))
+(add-hook 'python-mode-hook #'flycheck-python-setup)
+
 ;; Themes
 (require 'doom-themes)
 (load-theme 'doom-one t)
@@ -45,7 +54,7 @@
 (defvaralias 'c-basic-offset 'tab-width)
 ;; setup Neotree
 (require 'neotree)
-(global-set-key (kbd "C-c C-d") 'neotree-toggle)
+(global-set-key (kbd "C-x C-5") 'neotree-toggle)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-window-fixed-size nil)
 
@@ -56,7 +65,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(neotree doom-themes autopair auto-complete sr-speedbar))))
+	(flycheck pylint markdown-mode flymd neotree doom-themes autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
