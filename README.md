@@ -10,7 +10,8 @@ My Emacs File. This configuration includes:
 * Markdown-mode (sintax highlighting)
 * Flymd (mark-down preview)
 * Json-mode (json preview)
-* Jedi (Python environment)
+* Jedi (Python autocomplete)
+* Elpy (Python environment)
 * Emr (refactoring system)
 * ac-html (autocomplete HTML)
 * Others
@@ -27,3 +28,6 @@ path=~/.emacs/init.el
 cp $path $path.bak
 cp <path-for-this-init.el> $path
 ```
+
+## Configuration Requirements
+For Jedi usage, `M-X jedi:install-server`
