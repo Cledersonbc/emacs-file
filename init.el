@@ -22,6 +22,13 @@
     (flycheck-mode))
 (add-hook 'python-mode-hook #'flycheck-python-setup)
 
+;; Jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
+
+;; Python Environment
+(elpy-enable)
+
 ;; Themes
 (require 'doom-themes)
 (load-theme 'doom-one t)
@@ -35,6 +42,9 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<up>") 'shrink-window)
 (global-set-key (kbd "S-C-<down>") 'enlarge-window)
+
+;; Refactor
+(define-key prog-mode-map (kbd "M-<enter>") 'emr-show-refactor-menu)
 
 ;; It hides the menu-bar, scrollbar and tool-bar
 (tool-bar-mode -1)
@@ -58,6 +68,25 @@
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-window-fixed-size nil)
 
+;; Auto-complete html
+(defun setup-ac-for-haml ()
+  ;; Require ac-haml since we are setup haml auto completion
+  (require 'ac-haml)
+  ;; Require default data provider if you want to use
+  (require 'ac-html-default-data-provider)
+  ;; Enable data providers,
+  ;; currently only default data provider available
+  (ac-html-enable-data-provider 'ac-html-default-data-provider)
+  ;; Let ac-haml do some setup
+  (ac-haml-setup)
+  ;; Set your ac-source
+  (setq ac-sources '(ac-source-haml-tag
+                     ac-source-haml-attr
+                     ac-source-haml-attrv))
+    ;; Enable auto complete mode
+  (auto-complete-mode))
+(add-hook 'haml-mode-hook 'setup-ac-for-haml)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -65,7 +94,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(flycheck pylint markdown-mode flymd neotree doom-themes autopair auto-complete))))
+	(json-mode elpy jedi emr ac-html flycheck pylint markdown-mode flymd neotree doom-themes autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

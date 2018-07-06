@@ -8,7 +8,11 @@ My Emacs File. This configuration includes:
 * Auto-complete (based in used words)
 * Flycheck for Python (using Pylint)
 * Markdown-mode (sintax highlighting)
-* Flymd (mark-down previw)
+* Flymd (mark-down preview)
+* Json-mode (json preview)
+* Jedi (Python environment)
+* Emr (refactoring system)
+* ac-html (autocomplete HTML)
 * Others
 
 # Preview
