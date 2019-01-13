@@ -1,0 +1,7 @@
+# Temp files
+~*.*
+*.*~
+\#*\#
+
+# Flymd files
+flymd.*

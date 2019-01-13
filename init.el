@@ -1,91 +1,75 @@
 ;; #################  My Emacs File ###################
 ;; ### init.el with some configurations/preferences ###
 ;; ###          @author: Clederson Cruz             ###
-;; ###                   2017                       ###
+;; ###                   2019                       ###
 ;; ####################################################
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
 (package-initialize)
 
+;; ################# Melpa packages ###################
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
-;; Shell
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
 
-;; Fly-check with Python
-(defun flycheck-python-setup ()
-    (flycheck-mode))
-(add-hook 'python-mode-hook #'flycheck-python-setup)
-
-;; Jedi
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-
-;; Python Environment
-(elpy-enable)
-
-;; Themes
+;; ################# Themes ###########################
 (require 'doom-themes)
 (load-theme 'doom-one t)
-;; (load-theme 'misterioso)
+;; (load-theme 'misterioso) ;; dark theme built-in
 
-;; Icons
+
+;; ################# Icons ############################
 (require 'all-the-icons)
 
-;; Window
+
+;; ################# File Explorer Menu ##############
+(require 'neotree) 
+(global-set-key (kbd "C-x C-5") 'neotree-toggle)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(setq neo-window-fixed-size nil)
+
+
+;; ################# Window Shortcuts #################
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<up>") 'shrink-window)
 (global-set-key (kbd "S-C-<down>") 'enlarge-window)
 
-;; Refactor
-(define-key prog-mode-map (kbd "M-<enter>") 'emr-show-refactor-menu)
 
-;; It hides the menu-bar, scrollbar and tool-bar
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(toggle-scroll-bar -1)
-;; It hides Emacs Welcome
-(setq inhibit-startup-screen t)
-;; It shows the line number on Emacs
-(global-linum-mode t)
-;; Auto-complete
-(global-auto-complete-mode t)
-;; Auto-pair
-(autopair-global-mode)
-;; Tabs
-(setq-default indent-tabs-mode t)
-(setq-default tab-width 4)
-(defvaralias 'c-basic-offset 'tab-width)
-;; setup Neotree
-(require 'neotree)
-(global-set-key (kbd "C-x C-5") 'neotree-toggle)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-(setq neo-window-fixed-size nil)
+;; ################# Custom Shortcuts #################
+(global-set-key (kbd "C-c k") 'yas-expand)
+(global-set-key (kbd "C-<enter>") 'elpy-goto-definition)
+(global-set-key (kbd "C-S-<enter>") 'elpy-goto-definition-other-window)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-x C-/") 'yafolding-toggle-element)
 
-;; Auto-complete html
-(defun setup-ac-for-haml ()
-  ;; Require ac-haml since we are setup haml auto completion
-  (require 'ac-haml)
-  ;; Require default data provider if you want to use
-  (require 'ac-html-default-data-provider)
-  ;; Enable data providers,
-  ;; currently only default data provider available
-  (ac-html-enable-data-provider 'ac-html-default-data-provider)
-  ;; Let ac-haml do some setup
-  (ac-haml-setup)
-  ;; Set your ac-source
-  (setq ac-sources '(ac-source-haml-tag
-                     ac-source-haml-attr
-                     ac-source-haml-attrv))
-    ;; Enable auto complete mode
-  (auto-complete-mode))
-(add-hook 'haml-mode-hook 'setup-ac-for-haml)
+
+;; ################# Preferences ######################
+(tool-bar-mode -1) ;; It hides tool-bar
+(menu-bar-mode -1) ;; It hides menu-bar
+(toggle-scroll-bar -1) ;; It hides scroll-bar
+(setq inhibit-startup-screen t) ;; It hides default Emacs Welcome
+(global-linum-mode t) ;; It shows line-number on left of window's buffer
+(setq column-number-mode t) ;; It shows column-number on bottom
+(setq-default tab-width 4) ;; It set tab-size to 4 (PEP8 recommendation for Python)
+(electric-pair-mode 1) ;; Auto-complete: " ' “” ‘’ () {} [] «» ‹› 「」
+(put 'narrow-to-region 'disabled nil) ;; Actives narrow to region
+(show-paren-mode 1) ;; Highlights () [] {} ...
+(require 'paren)
+(set-face-background 'show-paren-match (face-background 'default))
+(set-face-foreground 'show-paren-match "#68ACEE")
+(set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+
+
+;; ################# Python Preferences ###############
+(elpy-enable) ;; Emacs Lisp Python Environment: <https://github.com/jorgenschaefer/elpy>
+(yas-global-mode 1) ;; YASnippet is a template system for Emacs: <https://github.com/joaotavora/yasnippet>
+(setq highlight-indentation-blank-lines t) ;; It shows indent guides on blank lines
+(set-face-background 'highlight-indentation-face "#373A40") ;; Background of indentation
+(set-face-background 'highlight-indentation-current-column-face "#949da8") ;; Background of current indent.
+(yafolding-mode 1) ;; It shows/hides code blocks
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt") ;; Interpreter, "python" is used by default instead of ipython
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -94,7 +78,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(json-mode elpy jedi emr ac-html flycheck pylint markdown-mode flymd neotree doom-themes autopair auto-complete))))
+	(expand-region yasnippet-classic-snippets json-mode markdown-mode flymd elpy neotree doom-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
