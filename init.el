@@ -50,7 +50,7 @@
 (setq inhibit-startup-screen t) ;; It hides default Emacs Welcome
 (global-linum-mode t) ;; It shows line-number on left of window's buffer
 (setq column-number-mode t) ;; It shows column-number on bottom
-(setq-default tab-width 4) ;; It set tab-size to 4 (PEP8 recommendation for Python)
+(setq-default tab-width 4) ;; It sets tab-size to 4 (PEP8 recommendation for Python)
 (electric-pair-mode 1) ;; Auto-complete: " ' “” ‘’ () {} [] «» ‹› 「」
 (put 'narrow-to-region 'disabled nil) ;; Actives narrow to region
 (show-paren-mode 1) ;; Highlights () [] {} ...
@@ -58,6 +58,8 @@
 (set-face-background 'show-paren-match (face-background 'default))
 (set-face-foreground 'show-paren-match "#68ACEE")
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+(setq-default show-trailing-whitespace t) ;; It shows whitespaces at end of every line
+(set-face-background 'trailing-whitespace "#00DA00") ;; Background of trailing whitespaces
 
 
 ;; ################# Python Preferences ###############
