@@ -1,7 +1,7 @@
 ;; #################  My Emacs File ###################
 ;; ### init.el with some configurations/preferences ###
 ;; ###          @author: Clederson Cruz             ###
-;; ###                   2019                       ###
+;; ###                 2019-2020                    ###
 ;; ####################################################
 
 (package-initialize)
@@ -22,7 +22,7 @@
 
 
 ;; ################# File Explorer Menu ##############
-(require 'neotree) 
+(require 'neotree)
 (global-set-key (kbd "C-x C-5") 'neotree-toggle)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-window-fixed-size nil)

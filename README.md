@@ -57,7 +57,7 @@ You need  **Melpa** to access melpa packages. It is included by default in this 
 
 ### All-the-icons installation
 If you choose install all-the-icons, follow these steps:
-* M-x all-the-icons-install-fonts
+* ``M-x all-the-icons-install-fonts``
 
 In the Linux terminal, run ``fc-cache -f -v``.
 
