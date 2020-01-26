@@ -35,6 +35,8 @@ It's important install some Python packages with **pip**. Use e.g. *pip install 
 * **autopep8** (automatic PEP8 formatting)
 * **yapf** (code formatting)
 
+
+## Install Elpy
 See this documentation on [Elpy](https://github.com/jorgenschaefer/elpy). To install Elpy on Linux you can do:
 * sudo apt-get install elpa-elpy # Debian-like, e.g. Ubuntu, Mint etc.
 * sudo *(aur helper, e.g. pikaur)* -S emacs-elpy # Arch Linux-like, e.g. Manjaro, Antergos etc.
@@ -50,6 +52,14 @@ You need  **Melpa** to access melpa packages. It is included by default in this 
 * **Yasnippet-classic-snippets** allows you to autocomplete code pieces of some languages.
 * **Markdown-mode** (sintax highlighting for markdown)
 * **Json-mode** (sintax highlighting for json)
+* **Yafolding** (Folding code blocks based on indentation)
+
+
+### All-the-icons installation
+If you choose install all-the-icons, follow these steps:
+* M-x all-the-icons-install-fonts
+
+In the Linux terminal, run ``fc-cache -f -v``.
 
 
 # How to use
